@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import { router as usersRouter } from "./routes/users.mjs";
+import { router as productsRouter } from "./routes/products.mjs";
+
 import { connectDB } from "./config/db.mjs";
 import mongoose from "mongoose";
 
@@ -13,6 +15,8 @@ const app = express();
 
 app.use(express.json());
 app.use("/users", usersRouter);
+
+app.use("/products", productsRouter);
 
 // async function readUsers() {
 //   const data = await fs.readFile("users.json", "utf-8");
