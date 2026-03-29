@@ -18,12 +18,6 @@ dotenv.config();
 // Disable strict query warnings in Mongoose
 mongoose.set("strictQuery", false);
 
-// Connect to MongoDB
-await connectDB();
-
-// Define server port from environment variable or fallback to 3000
-const port = process.env.PORT ? process.env.PORT : 3000;
-
 // Initialize Express app
 const app = express();
 
@@ -32,24 +26,33 @@ const app = express();
 // Parse incoming JSON requests
 app.use(express.json());
 
-// Enable CORS (allow requests from different origins)
+// Enable CORS
 app.use(
   cors({
-    origin: "http://localhost:5173", // Replace "*" with your frontend URL in production for security
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+    origin: process.env.FRONTEND_URL || "*", // Use env variable for frontend URL in production
+    methods: ["GET", "POST", "PUT", "DELETE"],
   }),
 );
 
 // -------------------- ROUTES --------------------
-
-// User-related routes
 app.use("/api/users", usersRouter);
-
-// Product-related routes
 app.use("/api/products", productsRouter);
-
-// Employee CRUD API routes
 app.use("/api/employees", employeeRouter);
 
 // -------------------- START SERVER --------------------
-app.listen(port, () => console.log(`Server running on port ${port}`));
+const startServer = async () => {
+  try {
+    // Connect to MongoDB
+    await connectDB();
+    console.log("MongoDB connected");
+
+    // Start Express server
+    const port = process.env.PORT || 3000;
+    app.listen(port, () => console.log(`Server running on port ${port}`));
+  } catch (error) {
+    console.error("Failed to start server:", error);
+    process.exit(1); // Exit if DB connection fails
+  }
+};
+
+startServer();
