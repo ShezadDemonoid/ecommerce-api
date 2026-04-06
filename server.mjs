@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: process.env.FRONTEND_URL || "*", // Use env variable for frontend URL in production
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "PATCH", "POST", "PUT", "DELETE"],
   }),
 );
 
