@@ -7,6 +7,11 @@ const userSchema = mongoose.Schema({
   },
   username: String,
   email: String,
+  role: {
+    type: String,
+    enum: ["customer", "admin", "manager"],
+    default: "customer",
+  },
   address: {
     city: String,
     geo: {

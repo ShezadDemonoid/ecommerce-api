@@ -1,5 +1,5 @@
 // controllers/userController.mjs
-import User from "../model/userModel.mjs";
+import User from "../models/userModel.mjs";
 
 // -------------------- GET ALL USERS --------------------
 const getUsers = async (req, res) => {

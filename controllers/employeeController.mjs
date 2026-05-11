@@ -1,4 +1,4 @@
-import Employee from "../model/employeeModel.mjs";
+import Employee from "../models/employeeModel.mjs";
 
 // Get all employees
 export const getEmployees = async (req, res) => {

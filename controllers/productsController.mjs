@@ -1,5 +1,5 @@
 // controllers/productController.mjs
-import Product from "../model/productModel.mjs";
+import Product from "../models/productModel.mjs";
 
 // -------------------- GET ALL PRODUCTS --------------------
 const getProducts = async (req, res) => {
