@@ -8,6 +8,7 @@ import cors from "cors";
 import { router as usersRouter } from "./routes/users.mjs";
 import { router as productsRouter } from "./routes/products.mjs";
 import { router as employeeRouter } from "./routes/employees.mjs";
+import { router as authRoutes } from "./routes/authRoutes.mjs";
 
 // Import MongoDB connection function
 import { connectDB } from "./config/db.mjs";
@@ -38,7 +39,7 @@ app.use(
 app.use("/api/users", usersRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/employees", employeeRouter);
-
+app.use("/api/auth", authRoutes);
 // -------------------- START SERVER --------------------
 const startServer = async () => {
   try {
